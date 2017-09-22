@@ -15,11 +15,15 @@ module.exports = function(grunt) {
     watch : {
       livereload : {
         files : [
-            'WebContent/**/*.*', '!WebContent/resources/**/*', '!WebContent/res/css/**/*.scss',  '!WebContent/res/css/**/*.map' 
+            'WebContent/**/*.*', '!WebContent/**/*.es6.js', '!WebContent/**/*.map', '!WebContent/resources/**/*', '!WebContent/res/css/**/*.scss',  '!WebContent/res/css/**/*.map' 
         ],
         options : {
           livereload : LIVERELOAD_PORT
         }
+      },
+      babelify : {
+        files : ['WebContent/**/*.es6.js'],
+        tasks : ['babel']
       },
       test : {
         files : [ 'tests/*.js', 'tests/*.html',
@@ -120,10 +124,24 @@ module.exports = function(grunt) {
           logConcurrentOutput: true
       },
       server: {
-          tasks: ["watch:livereload"]
+          tasks: ["watch:babelify", "watch:livereload"]
       },
       verify: {
           tasks: ["jshint", "qunit"]
+      }
+    },
+    babel : {
+      options : {
+        sourceMap : true
+      },
+      dist : {
+        files : [{
+          expand : true,
+          cwd : 'WebContent',
+          src : ['**/*.es6.js'],
+          dest : 'WebContent',
+          ext : '.js'
+        }]
       }
     }
   });
@@ -138,6 +156,10 @@ module.exports = function(grunt) {
 
   grunt.registerTask('server', function() {
 		grunt.task.run([ 'connect:livereload', 'open:server', 'concurrent:server' ]);
-	});
+  });
+
+  grunt.registerTask("babelify", ['babel']);
+
+  
 
 };

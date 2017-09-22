@@ -1,26 +1,20 @@
-"use strict";
-
-sap.ui.define(["sap/m/ListItemBase"], function (Control) {
+sap.ui.define(["sap/m/ListItemBase"], function(Control) {
     'use strict';
-
-    var oListEntry = Control.extend("ext.Controls.ListEntry", {
-        metadata: {
-            properties: {
-                text: { type: "string", defaultValue: "" },
-                title: { type: "string", defaultValue: "" },
-                subtitle: { type: "string", defaultValue: "" },
-                color: { type: "string", defaultValue: "transparent" }
+    
+    let oListEntry = Control.extend("ext.Controls.ListEntry", {
+        metadata : {
+            properties : {
+                text : {type: "string", defaultValue : ""},
+                title : {type: "string", defaultValue : ""},
+                subtitle : {type: "string", defaultValue : ""},
+                color : {type : "string", defaultValue : "transparent"}
             }
         },
 
-        renderer: function renderer(oRm, oControl) {
-            (function () {
-                oRm.write("<div ");
-                oRm.writeClasses();
-                oRm.write(">");
-                oRm.writeEscaped("listentry23456");
-                oRm.write("</div>");
-            })();
+        renderer : function(oRm, oControl) {
+            oRm.render(
+                <div>listentry23456</div>
+            );
             // oRm.write("<div");
             // oRm.writeControlData(oControl);
             // oRm.addClass('listEntry');
@@ -68,12 +62,13 @@ sap.ui.define(["sap/m/ListItemBase"], function (Control) {
         }
     });
 
-    oListEntry.prototype.init = function () {
-        if (Control.prototype.init) {
-            Control.prototype.init.apply(this, arguments);
+    oListEntry.prototype.init = function()
+    {
+        if (Control.prototype.init)
+        {
+            Control.prototype.init.apply(this,arguments);
         }
     };
 
     return oListEntry;
 });
-//# sourceMappingURL=ListEntry.js.map
