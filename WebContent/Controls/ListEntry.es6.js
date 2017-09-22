@@ -12,53 +12,26 @@ sap.ui.define(["sap/m/ListItemBase"], function(Control) {
         },
 
         renderer : function(oRm, oControl) {
+            let sBackGroundColor = oControl.getColor()
+            let sSubtitle = oControl.getSubtitle()
+            let sText = oControl.getText()
+            let sSubtitleClass = 'listEntrySubtitle'
             oRm.render(
-                <div>listentry23456</div>
+                <div ui5ControlData={oControl} class="listEntry" style={{"background-color" : sBackGroundColor}}>
+                    { oControl.getProperty("title") &&
+                        <div class="listEntryTitle">{oControl.getProperty("title")}</div>
+                    }
+                    {
+                        sSubtitle &&
+                        <div class={sSubtitleClass}>{sSubtitle}</div>
+                    }
+                    {
+                        sText &&
+                        <div class="listEntryText">{sText}</div>
+                    }
+                    <div>{performance.now()}</div>
+                </div>
             );
-            // oRm.write("<div");
-            // oRm.writeControlData(oControl);
-            // oRm.addClass('listEntry');
-            // oRm.writeClasses();
-            // oRm.addStyle("background-color", oControl.getColor());
-            // oRm.writeStyles();
-            // oRm.write(">");
-            // oRm.write("hello control");
-
-            // if (oControl.getProperty("title"))
-            // {
-            //     oRm.write('<div');
-            //     oRm.addClass('listEntryTitle');
-            //     oRm.writeClasses();
-            //     oRm.write('>');
-            //     oRm.write(oControl.getProperty("title"));
-            //     oRm.write('</div>');
-            // }
-
-            // if (oControl.getProperty("subtitle"))
-            // {
-            //     oRm.write('<div');
-            //     oRm.addClass('listEntrySubtitle');
-            //     oRm.writeClasses();
-            //     oRm.write('>');
-            //     oRm.write(oControl.getProperty("subtitle"));
-            //     oRm.write('</div>');
-            // }
-
-            // if (oControl.getProperty("text"))
-            // {
-            //     oRm.write('<div');
-            //     oRm.addClass('listEntryText');
-            //     oRm.writeClasses();
-            //     oRm.write('>');
-            //     oRm.write(oControl.getProperty("text"));
-            //     oRm.write('</div>');
-            // }
-
-            // oRm.write('<div>');
-            // oRm.write(performance.now());
-            // oRm.write('</div>');
-
-            // oRm.write("</div>");
         }
     });
 
