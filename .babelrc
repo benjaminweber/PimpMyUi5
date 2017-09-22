@@ -1,0 +1,11 @@
+{
+    "presets": ["env"],
+    "plugins": ["spet-ui5-jsx-rm"],
+    "ignore" : [
+        "WebContent/resources/**/*.js",
+        "**/resources",
+        "**/test",
+        "**/model",
+        "**/localService"
+    ]
+  }
