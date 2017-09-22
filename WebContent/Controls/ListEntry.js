@@ -13,6 +13,16 @@ sap.ui.define(["sap/m/ListItemBase"], function (Control) {
             }
         },
 
+        /**
+         * arrow functions can be used
+         */
+        onclick: function onclick() {
+            console.log("hey, just clicked an item");
+        },
+
+        /**
+         * Using JSX
+         */
         renderer: function renderer(oRm, oControl) {
             var sBackGroundColor = oControl.getColor();
             var sSubtitle = oControl.getSubtitle();

@@ -111,20 +111,6 @@ sap.ui.define([
 			/* =========================================================== */
 
 			/**
-			 * After list data is available, this handler method updates the
-			 * master list counter and hides the pull to refresh control, if
-			 * necessary.
-			 * @param {sap.ui.base.Event} oEvent the update finished event
-			 * @public
-			 */
-			onUpdateFinished : function (oEvent) {
-				// update the master list object counter after new data is loaded
-				this._updateListItemCount(oEvent.getParameter("total"));
-				// hide pull to refresh if necessary
-				this.byId("pullToRefresh").hide();
-			},
-
-			/**
 			 * Event handler for the master search field. Applies current
 			 * filter value and triggers a new search. If the search field's
 			 * 'refresh' button has been pressed, no new search is triggered

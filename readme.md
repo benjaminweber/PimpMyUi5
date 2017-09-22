@@ -12,4 +12,6 @@ Check out github page: https://github.com/serban-petrescu/ui5-jsx-rm
 
 ### bring it to work!
 - npm install
-- grunt server
+- download latest openui5 and drop the resrouces folder in 'WebContent'.
+- dont forget to exclude 'node_modules' and 'resources' from IDE.
+- run 'grunt server' e.g. from command line. This task provides livereload and live-babeling.

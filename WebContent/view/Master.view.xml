@@ -10,19 +10,6 @@
 		title="{masterView>/title}"
 		navButtonPress="onNavBack"
 		showNavButton="true">
-		<semantic:subHeader>
-			<Bar id="headerBar">
-				<contentMiddle>
-					<SearchField
-						id="searchField"
-						showRefreshButton="{= !${device>/support/touch} }"
-						tooltip="{i18n>masterSearchTooltip}"
-						width="100%"
-						search="onSearch">
-					</SearchField>
-				</contentMiddle>
-			</Bar>
-		</semantic:subHeader>
 
 		<semantic:content>
 			<List
@@ -49,9 +36,9 @@
 			<Button
 			id="refreshButton"
 			visible="true"
-			text="About"
+			text="rebuild"
 			enabled="true"
-			icon="sap-icon://message-information"
+			icon="sap-icon://refresh"
 			press="onRefreshList">
 			</Button>
 			</semantic:customFooterContent>
