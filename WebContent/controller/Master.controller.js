@@ -8,13 +8,15 @@ sap.ui.define([
 		"sap/ui/Device",
 		"sap/ui/demo/masterdetail/model/formatter",
 		"sap/ui/demo/masterdetail/model/grouper",
-		"sap/ui/demo/masterdetail/model/GroupSortState"
-	], function (BaseController, JSONModel, Filter, FilterOperator, GroupHeaderListItem, Device, formatter, grouper, GroupSortState) {
+		"sap/ui/demo/masterdetail/model/GroupSortState",
+		"ext/Controls/ListEntry"
+	], function (BaseController, JSONModel, Filter, FilterOperator, GroupHeaderListItem, Device, formatter, grouper, GroupSortState, ListEntry) {
 		"use strict";
 
 		return BaseController.extend("sap.ui.demo.masterdetail.controller.Master", {
 
 			formatter: formatter,
+			lastColor: "transparent",
 
 			/* =========================================================== */
 			/* lifecycle methods                                           */
@@ -59,6 +61,49 @@ sap.ui.define([
 
 				this.getRouter().getRoute("master").attachPatternMatched(this._onMasterMatched, this);
 				this.getRouter().attachBypassed(this.onBypassed, this);
+
+				this.createNewList();
+
+				sap.ui.getCore().getEventBus().subscribe("master", "rebuild", this.createNewList, this);
+			},
+
+			onRefreshList : function()
+			{
+				this.createNewList();
+			},
+			
+			createNewList : function()
+			{
+				console.log("createNewList()");
+				let oList = this.byId("list");
+				let iNumberOfItems = 3000;
+				let sColor;
+				if (this.lastColor === "transparent")
+				{
+					sColor = "lightgreen";
+				}
+				else if (this.lastColor === "lightgreen")
+				{
+					sColor = "lightblue";
+				}
+				else
+				{
+					sColor = "transparent";
+				}
+				this.lastColor = sColor;
+
+				oList.removeAllItems();
+
+				for (let i = 0; i < iNumberOfItems; i++)
+				{
+					oList.addItem(new ListEntry({
+						title : "title: " + i,
+						text : "text: " + i,
+						subtitle : "subtitle: " + i,
+						color: sColor
+					}));
+				}
+
 			},
 
 			/* =========================================================== */

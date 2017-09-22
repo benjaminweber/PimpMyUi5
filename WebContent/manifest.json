@@ -35,6 +35,9 @@
 	},
 
 	"sap.ui5": {
+		"resourceRoots" : {
+			"ext" : "./"
+		},
 		"rootView": {
 			"viewName": "sap.ui.demo.masterdetail.view.App",
 			"type": "XML",
