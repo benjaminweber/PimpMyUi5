@@ -245,7 +245,7 @@ sap.ui.define([
 			 */
 			onSelectionChange : function (oEvent) {
 				// get the list item, either from the listItem parameter or from the event's source itself (will depend on the device-dependent mode).
-				this._showDetail(oEvent.getParameter("listItem") || oEvent.getSource());
+				// this._showDetail(oEvent.getParameter("listItem") || oEvent.getSource());
 			},
 
 			/**

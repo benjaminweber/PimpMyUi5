@@ -61,6 +61,10 @@ sap.ui.define(["sap/m/ListItemBase"], function(Control) {
 
     oListEntry.prototype.init = function()
     {
+        if (Control.prototype.init)
+        {
+            Control.prototype.init.apply(this,arguments);
+        }
     };
 
     return oListEntry;
