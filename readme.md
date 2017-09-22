@@ -1,5 +1,6 @@
 # PimpMyUI5
 This is a test-repo to integrate some extras to openui5.
+As IDE i recommend Visual Studio Code since it support JSX out of the box.
 
 ## es2015
 Babel preset 2015
