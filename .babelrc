@@ -1,6 +1,5 @@
 {
-    "presets": ["env", "es2015"],
-    "plugins": ["spet-ui5-jsx-rm"],
+    "presets": ["env", "es2015", "react"],
     "ignore" : [
         "WebContent/resources/**/*.js",
         "**/resources",

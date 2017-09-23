@@ -1,4 +1,4 @@
-sap.ui.define(["sap/m/ListItemBase"], function(Control) {
+sap.ui.define(["sap/m/ListItemBase", "./ReactChildOfListEntry"], function(Control, ReactChildOfListEntry) {
     'use strict';
     
     let oListEntry = Control.extend("ext.Controls.ListEntry", {
@@ -22,28 +22,30 @@ sap.ui.define(["sap/m/ListItemBase"], function(Control) {
          * Using JSX
          */
         renderer : function(oRm, oControl) {
-            let sBackGroundColor = oControl.getColor()
-            let sSubtitle = oControl.getSubtitle()
-            let sText = oControl.getText()
-            let sSubtitleClass = 'listEntrySubtitle'
-            oRm.render(
-                <div ui5ControlData={oControl} class="listEntry" style={{"background-color" : sBackGroundColor}}>
-                    { oControl.getProperty("title") &&
-                        <div class="listEntryTitle">{oControl.getProperty("title")}</div>
-                    }
-                    {
-                        sSubtitle &&
-                        <div class={sSubtitleClass}>{sSubtitle}</div>
-                    }
-                    {
-                        sText &&
-                        <div class="listEntryText">{sText}</div>
-                    }
-                    <div>{performance.now()}</div>
-                </div>
-            );
+            oRm.write("<div");
+            oRm.writeControlData(oControl)
+            oRm.writeClasses()
+            oRm.write(">")
+            oRm.write("</div>")
+
         }
     });
+
+    oListEntry.prototype.onAfterRendering = function() {
+        if (Control.prototype.onAfterRendering)
+        {
+            Control.prototype.onAfterRendering.apply(this,arguments);
+        }
+
+        //here we add our ReactComponent
+        let someProp = {text : "someText"}
+        ReactDOM.render(
+            <div>
+                <ReactChildOfListEntry {...someProp}/>
+            </div>,
+            this.$()[0] //this is where we want to render
+        )
+    };
 
     oListEntry.prototype.init = function()
     {

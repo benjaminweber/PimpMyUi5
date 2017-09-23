@@ -9,8 +9,9 @@ sap.ui.define([
 		"sap/ui/demo/masterdetail/model/formatter",
 		"sap/ui/demo/masterdetail/model/grouper",
 		"sap/ui/demo/masterdetail/model/GroupSortState",
-		"ext/Controls/ListEntry"
-	], function (BaseController, JSONModel, Filter, FilterOperator, GroupHeaderListItem, Device, formatter, grouper, GroupSortState, ListEntry) {
+		"ext/Controls/ListEntry",
+		"ext/es6/SimpleLoader"
+	], function (BaseController, JSONModel, Filter, FilterOperator, GroupHeaderListItem, Device, formatter, grouper, GroupSortState, ListEntry, SimpleLoader) {
 		"use strict";
 
 		return BaseController.extend("sap.ui.demo.masterdetail.controller.Master", {
@@ -66,6 +67,10 @@ sap.ui.define([
 				this.createNewList();
 				
 				sap.ui.getCore().getEventBus().subscribe("master", "rebuild", this.createNewList, this);
+
+				let simpleLoader = new SimpleLoader();
+				simpleLoader.sayHello();
+				simpleLoader.sayHelloControl();
 			},
 
 			onRefreshList : function()
@@ -77,7 +82,7 @@ sap.ui.define([
 			{
 				console.log("createNewList()");
 				let oList = this.byId("list");
-				let iNumberOfItems = 3000;
+				let iNumberOfItems = 5;
 				let sColor;
 				if (this.lastColor === "transparent")
 				{
@@ -96,15 +101,18 @@ sap.ui.define([
 				oList.destroyItems();
 				oList.removeAllItems();
 
-				for (let i = 0; i < iNumberOfItems; i++)
-				{
-					oList.addItem(new ListEntry({
-						title : "title: " + i,
-						text : "text: " + i,
-						subtitle : "subtitle: " + i,
-						color: sColor
-					}));
-				}
+				// oList.addItem(new SimpleLoader())
+				oList.addItem(new ListEntry())
+
+				// for (let i = 0; i < iNumberOfItems; i++)
+				// {
+				// 	oList.addItem(new ListEntry({
+				// 		title : "title: " + i,
+				// 		text : "text: " + i,
+				// 		subtitle : "subtitle: " + i,
+				// 		color: sColor
+				// 	}));
+				// }
 
 			},
 

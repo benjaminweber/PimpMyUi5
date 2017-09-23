@@ -1,0 +1,1 @@
+{"version":3,"sources":["SimpleList.es6.js"],"names":["sap","ui","define"],"mappings":";;AAAAA,IAAIC,EAAJ,CAAOC,MAAP,CAAc,EAAd,EAAkB,YAAW,CAI5B,CAJD","file":"SimpleList.js","sourcesContent":["sap.ui.define([], function() {\r\n\r\n    \r\n\r\n});"]}

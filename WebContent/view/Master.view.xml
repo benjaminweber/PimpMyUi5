@@ -14,14 +14,14 @@
 		showNavButton="true">
 
 		<semantic:content>
-			<Controls:List
+			<List
 				class="overflowList"
 				id="list"
 				busyIndicatorDelay="{masterView>/delay}"
 				noDataText="{masterView>/noDataText}"
 				mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}"
 				selectionChange="onSelectionChange">
-			</Controls:List>
+			</List>
 		</semantic:content>
 
 		<semantic:customFooterContent>
