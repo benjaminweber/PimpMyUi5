@@ -1,0 +1,6 @@
+{
+    "name" : "UI5 Offline",
+    "version" : "0.1.0",
+    "description" : "Test offline scenarios",
+    "main" : "index.js"
+}

@@ -29,6 +29,7 @@ sap.ui.define(["sap/m/ListItemBase"], function (Control) {
             var sSubtitle = oControl.getSubtitle();
             var sText = oControl.getText();
             var sSubtitleClass = 'listEntrySubtitle';
+            var sTitle = oControl.getTitle();
             var time = oControl.getTime();
             (function () {
                 oRm.write("<div ");
@@ -57,12 +58,12 @@ sap.ui.define(["sap/m/ListItemBase"], function (Control) {
 
                 oRm.writeClasses();
                 oRm.write(">");
-                oRm.writeEscaped((oControl.getProperty("title") && (function () {
+                oRm.writeEscaped((sTitle && (function () {
                     oRm.write("<div ");
                     oRm.addClass("listEntryTitle");
                     oRm.writeClasses();
                     oRm.write(">");
-                    oRm.writeEscaped((oControl.getProperty("title")) || "");
+                    oRm.writeEscaped((sTitle) || "");
                     oRm.write("</div>");
                 })()) || "");
                 oRm.writeEscaped((sSubtitle && (function () {

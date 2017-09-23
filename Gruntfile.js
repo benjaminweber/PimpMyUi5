@@ -143,7 +143,20 @@ module.exports = function(grunt) {
           ext : '.js'
         }]
       }
-    }
+    },
+    electron: {
+      win: {
+          options: {
+              name: 'Offline-Test',
+              dir: 'WebContent',
+              out: 'native',
+              version: '1.8.0',
+              electronVersion : '1.7.6',
+              platform: 'win32',
+              arch: 'x64'
+          }
+      }
+  },
   });
 
   // These plugins provide necessary tasks.

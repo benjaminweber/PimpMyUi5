@@ -27,11 +27,12 @@ sap.ui.define(["sap/m/ListItemBase"], function(Control) {
             let sSubtitle = oControl.getSubtitle()
             let sText = oControl.getText()
             let sSubtitleClass = 'listEntrySubtitle'
+            let sTitle = oControl.getTitle()
             let time = oControl.getTime()
             oRm.render(
                 <div ui5ControlData={oControl} class="listEntry" style={{"background-color" : sBackGroundColor}}>
-                    { oControl.getProperty("title") &&
-                        <div class="listEntryTitle">{oControl.getProperty("title")}</div>
+                    { sTitle &&
+                        <div class="listEntryTitle">{sTitle}</div>
                     }
                     {
                         sSubtitle &&
