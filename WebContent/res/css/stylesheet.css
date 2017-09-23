@@ -1,3 +1,10 @@
 .listEntry {
     border-bottom: 1px solid black;
 }
+.overflowList {
+    overflow-y: auto;
+    height: 100%;
+}
+.pageWithDisabledScrollArea .sapMPage > section {
+    overflow-y: hidden !important;
+}

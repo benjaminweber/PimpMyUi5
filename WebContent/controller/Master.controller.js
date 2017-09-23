@@ -62,8 +62,9 @@ sap.ui.define([
 				this.getRouter().getRoute("master").attachPatternMatched(this._onMasterMatched, this);
 				this.getRouter().attachBypassed(this.onBypassed, this);
 
+				
 				this.createNewList();
-
+				
 				sap.ui.getCore().getEventBus().subscribe("master", "rebuild", this.createNewList, this);
 			},
 
@@ -92,6 +93,7 @@ sap.ui.define([
 				}
 				this.lastColor = sColor;
 
+				oList.destroyItems();
 				oList.removeAllItems();
 
 				for (let i = 0; i < iNumberOfItems; i++)

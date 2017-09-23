@@ -13,6 +13,7 @@
 		busyIndicatorDelay="{detailView>/delay}">
 
 		<semantic:content>
+		
 		</semantic:content>
 
 	</semantic:DetailPage>
