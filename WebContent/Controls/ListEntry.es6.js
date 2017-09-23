@@ -7,7 +7,8 @@ sap.ui.define(["sap/m/ListItemBase"], function(Control) {
                 text : {type: "string", defaultValue : ""},
                 title : {type: "string", defaultValue : ""},
                 subtitle : {type: "string", defaultValue : ""},
-                color : {type : "string", defaultValue : "transparent"}
+                color : {type : "string", defaultValue : "transparent"},
+                time : {type : "any"}
             }
         },
 
@@ -26,6 +27,7 @@ sap.ui.define(["sap/m/ListItemBase"], function(Control) {
             let sSubtitle = oControl.getSubtitle()
             let sText = oControl.getText()
             let sSubtitleClass = 'listEntrySubtitle'
+            let time = oControl.getTime()
             oRm.render(
                 <div ui5ControlData={oControl} class="listEntry" style={{"background-color" : sBackGroundColor}}>
                     { oControl.getProperty("title") &&
@@ -39,7 +41,9 @@ sap.ui.define(["sap/m/ListItemBase"], function(Control) {
                         sText &&
                         <div class="listEntryText">{sText}</div>
                     }
-                    <div>{performance.now()}</div>
+                    {
+                        <div>{time}</div>
+                    }
                 </div>
             );
         }

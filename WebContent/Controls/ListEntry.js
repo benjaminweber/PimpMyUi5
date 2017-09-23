@@ -9,7 +9,8 @@ sap.ui.define(["sap/m/ListItemBase"], function (Control) {
                 text: { type: "string", defaultValue: "" },
                 title: { type: "string", defaultValue: "" },
                 subtitle: { type: "string", defaultValue: "" },
-                color: { type: "string", defaultValue: "transparent" }
+                color: { type: "string", defaultValue: "transparent" },
+                time: { type: "any" }
             }
         },
 
@@ -28,6 +29,7 @@ sap.ui.define(["sap/m/ListItemBase"], function (Control) {
             var sSubtitle = oControl.getSubtitle();
             var sText = oControl.getText();
             var sSubtitleClass = 'listEntrySubtitle';
+            var time = oControl.getTime();
             (function () {
                 oRm.write("<div ");
                 oRm.writeControlData(oControl);
@@ -97,11 +99,13 @@ sap.ui.define(["sap/m/ListItemBase"], function (Control) {
                     oRm.writeEscaped((sText) || "");
                     oRm.write("</div>");
                 })()) || "");
-                oRm.write("<div ");
-                oRm.writeClasses();
-                oRm.write(">");
-                oRm.writeEscaped((performance.now()) || "");
-                oRm.write("</div>");
+                oRm.writeEscaped(((function () {
+                    oRm.write("<div ");
+                    oRm.writeClasses();
+                    oRm.write(">");
+                    oRm.writeEscaped((time) || "");
+                    oRm.write("</div>");
+                })()) || "");
                 oRm.write("</div>");
             })();
         }

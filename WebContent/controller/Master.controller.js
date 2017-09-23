@@ -100,7 +100,8 @@ sap.ui.define([
 						title : "title: " + i,
 						text : "text: " + i,
 						subtitle : "subtitle: " + i,
-						color: sColor
+						color: sColor,
+						time : performance.now()
 					}));
 				}
 
