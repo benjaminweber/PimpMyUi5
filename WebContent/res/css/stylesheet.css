@@ -8,3 +8,6 @@
 .pageWithDisabledScrollArea .sapMPage > section {
     overflow-y: hidden !important;
 }
+.listRoot {
+    height: 100%;
+}

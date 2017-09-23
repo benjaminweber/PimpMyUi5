@@ -82,7 +82,7 @@ sap.ui.define([
 			{
 				console.log("createNewList()");
 				let oList = this.byId("list");
-				let iNumberOfItems = 5;
+				let iNumberOfItems = 3000;
 				let sColor;
 				if (this.lastColor === "transparent")
 				{
@@ -98,21 +98,36 @@ sap.ui.define([
 				}
 				this.lastColor = sColor;
 
-				oList.destroyItems();
-				oList.removeAllItems();
+				// oList.destroyItems();
+				// oList.removeAllItems();
 
 				// oList.addItem(new SimpleLoader())
-				oList.addItem(new ListEntry())
+				// oList.addItem(new ListEntry())
 
 				// for (let i = 0; i < iNumberOfItems; i++)
 				// {
-				// 	oList.addItem(new ListEntry({
-				// 		title : "title: " + i,
-				// 		text : "text: " + i,
-				// 		subtitle : "subtitle: " + i,
-				// 		color: sColor
-				// 	}));
+					// oList.addItem(new ListEntry({
+					// 	title : "title: " + i,
+					// 	text : "text: " + i,
+					// 	subtitle : "subtitle: " + i,
+					// 	color: sColor
+					// }));
 				// }
+
+				let aData = []
+				for (let i = 0; i < iNumberOfItems; i++)
+				{
+					aData.push({
+						title : "title: " + i,
+						text : "text: " + i,
+						subtitle : "subtitle: " + i,
+						color: sColor,
+						time : performance.now()
+					})
+				}
+
+				//this triggers rerendering and so re-react
+				oList.setData(aData)
 
 			},
 

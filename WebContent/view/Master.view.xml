@@ -14,14 +14,15 @@
 		showNavButton="true">
 
 		<semantic:content>
-			<List
+			<!-- <List
 				class="overflowList"
 				id="list"
 				busyIndicatorDelay="{masterView>/delay}"
 				noDataText="{masterView>/noDataText}"
 				mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}"
 				selectionChange="onSelectionChange">
-			</List>
+			</List> -->
+			<Controls:ReactListWrapper id="list" />
 		</semantic:content>
 
 		<semantic:customFooterContent>
