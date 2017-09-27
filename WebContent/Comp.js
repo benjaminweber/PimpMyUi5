@@ -1,10 +1,13 @@
+// import "babel-polyfill";
+import ListSelectorFactory from './controller/ListSelectorNew';
+
 sap.ui.define([
 		"sap/ui/core/UIComponent",
 		"sap/ui/Device",
 		"sap/ui/demo/masterdetail/model/models",
-		"sap/ui/demo/masterdetail/controller/ListSelector",
+		// "sap/ui/demo/masterdetail/controller/ListSelector",
 		"sap/ui/demo/masterdetail/controller/ErrorHandler"
-	], function (UIComponent, Device, models, ListSelector, ErrorHandler) {
+	], function (UIComponent, Device, models, ErrorHandler) {
 		"use strict";
 
 		return UIComponent.extend("sap.ui.demo.masterdetail.Component", {
@@ -20,18 +23,48 @@ sap.ui.define([
 			 * @override
 			 */
 			init : function () {
-				this.oListSelector = new ListSelector();
+
+				
+				// async function doesn't work with ui5 and UIComponent.prototype.init.apply(this, arguments) below
+				// const ListSelector = await ListSelectorFactory();
+				// this.oListSelector = new ListSelector();
+				// but promises would work
+				// this.oListSelector = Promise.resolve(ListSelectorFactory).then( (ListSelector) =>
+				// 	// this.oListSelector = new ListSelector()
+				// 	new ListSelector()
+				// );
+
+				this.oListSelector = new Promise(async resolve => {
+					const ListSelector = await ListSelectorFactory();
+					resolve( new ListSelector() );
+				});
+				
 				this._oErrorHandler = new ErrorHandler(this);
 
 				// set the device model
 				this.setModel(models.createDeviceModel(), "device");
-
-				// call the base component's init function and create the App view
+ 
+				// call the base component's init function and create the App view 
 				UIComponent.prototype.init.apply(this, arguments);
 
 				// create the views based on the url/hash
 				this.getRouter().initialize();
 			},
+
+			// onInit()
+
+			// onInit: async function() {	
+				
+			// 	// call the base component's init function and create the App view 
+			// 	// UIComponent.prototype.init(arguments).bind(this);
+			// 	UIComponent.prototype.init.apply(this, arguments);
+			// 	// create the views based on the url/hash
+			// 	this.getRouter().initialize();
+							
+			// 	const ListSelector = await ListSelectorFactory();
+			// 	this.oListSelector = new ListSelector();
+
+			// },
 
 			/**
 			 * The component is destroyed by UI5 automatically.

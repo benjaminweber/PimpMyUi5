@@ -1,6 +1,12 @@
 {
-    "presets": ["env", "es2015"],
-    "plugins": ["spet-ui5-jsx-rm"],
+    "presets": [
+        ["env", {
+        "targets": {
+          "browsers": ["last 2 versions", "ie >= 11"]
+        }
+      }],
+    ],
+    "plugins": ["transform-runtime", "spet-ui5-jsx-rm"],
     "ignore" : [
         "WebContent/resources/**/*.js",
         "**/resources",

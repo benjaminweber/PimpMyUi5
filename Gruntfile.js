@@ -138,7 +138,7 @@ module.exports = function(grunt) {
         files : [{
           expand : true,
           cwd : 'WebContent',
-          src : ['**/*.es6.js'],
+          src : ['**/*/*.es6.js'],
           dest : 'WebContent',
           ext : '.js'
         }]

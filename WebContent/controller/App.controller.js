@@ -28,9 +28,13 @@ sap.ui.define([
 
 				// Makes sure that master view is hidden in split app
 				// after a new list entry has been selected.
-				oListSelector.attachListSelectionChange(function () {
-					this.byId("idAppControl").hideMaster();
-				}, this);
+				// Attention: oListSelector could be a Promise...
+				Promise.resolve(oListSelector).then(oListSelector =>
+					oListSelector.attachListSelectionChange( () => {
+						console.log('list selection was changed');
+						this.byId("idAppControl").hideMaster();
+					})					
+				);
 
 				// apply content density mode to root view
 				this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());

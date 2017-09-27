@@ -292,21 +292,24 @@ sap.ui.define([
 			 * @private
 			 */
 			_onMasterMatched :  function() {
-				this.getOwnerComponent().oListSelector.oWhenListLoadingIsDone.then(
-					function (mParams) {
-						if (mParams.list.getMode() === "None") {
-							return;
-						}
-						var sObjectId = mParams.firstListitem.getBindingContext().getProperty("ObjectID");
-						this.getRouter().navTo("object", {objectId : sObjectId}, true);
-					}.bind(this),
-					function (mParams) {
-						if (mParams.error) {
-							return;
-						}
-						this.getRouter().getTargets().display("detailNoObjectsAvailable");
-					}.bind(this)
+				Promise.resolve(this.getOwnerComponent().oListSelector).then( (oListSelector) => 
+					oListSelector.oWhenListLoadingIsDone.then(
+						function (mParams) {
+							if (mParams.list.getMode() === "None") {
+								return;
+							}
+							var sObjectId = mParams.firstListitem.getBindingContext().getProperty("ObjectID");
+							this.getRouter().navTo("object", {objectId : sObjectId}, true);
+						}.bind(this),
+						function (mParams) {
+							if (mParams.error) {
+								return;
+							}
+							this.getRouter().getTargets().display("detailNoObjectsAvailable");
+						}.bind(this)
+					)
 				);
+
 			},
 
 			/**
