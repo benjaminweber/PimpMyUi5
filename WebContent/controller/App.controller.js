@@ -5,7 +5,7 @@ sap.ui.define([
 		"use strict";
 
 		return BaseController.extend("sap.ui.demo.masterdetail.controller.App", {
-
+ 
 			onInit : function () {
 				var oViewModel,
 					fnSetAppNotBusy,
@@ -26,15 +26,15 @@ sap.ui.define([
 				// this.getOwnerComponent().getModel().metadataLoaded()
 				// 		.then(fnSetAppNotBusy);
 
-				// Makes sure that master view is hidden in split app
+				// Makes sure that master view is hidden in split app 
 				// after a new list entry has been selected.
 				// Attention: oListSelector could be a Promise...
-				Promise.resolve(oListSelector).then(oListSelector =>
-					oListSelector.attachListSelectionChange( () => {
+				Promise.resolve(oListSelector).then( function (oListSelector) {
+					return oListSelector.attachListSelectionChange( function () {
 						console.log('list selection was changed');
 						this.byId("idAppControl").hideMaster();
-					})					
-				);
+					})
+				});
 
 				// apply content density mode to root view
 				this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());

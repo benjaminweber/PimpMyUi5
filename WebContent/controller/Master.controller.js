@@ -292,7 +292,7 @@ sap.ui.define([
 			 * @private
 			 */
 			_onMasterMatched :  function() {
-				Promise.resolve(this.getOwnerComponent().oListSelector).then( (oListSelector) => 
+				Promise.resolve(this.getOwnerComponent().oListSelector).then( function (oListSelector) { 
 					oListSelector.oWhenListLoadingIsDone.then(
 						function (mParams) {
 							if (mParams.list.getMode() === "None") {
@@ -308,7 +308,7 @@ sap.ui.define([
 							this.getRouter().getTargets().display("detailNoObjectsAvailable");
 						}.bind(this)
 					)
-				);
+				});
 
 			},
 
